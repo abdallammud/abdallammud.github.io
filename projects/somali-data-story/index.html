@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What 46,000 Words Reveal About Somali</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --bg:#faf8f5; --surface:#ffffff; --ink:#211e19; --muted:#6b6459;
+    --line:#e7e1d8; --teal:#0f766e; --orange:#c2410c; --violet:#7c3aed;
+    --gold:#b45309; --slate:#475569;
+    --shadow:0 1px 2px rgba(0,0,0,.04),0 10px 30px rgba(0,0,0,.06);
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+       line-height:1.7;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px}
+
+  header.hero{padding:84px 0 46px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--teal);
+           font-weight:700;margin:0 0 16px}
+  h1{font-family:var(--serif);font-size:clamp(34px,5.4vw,54px);line-height:1.06;
+     margin:0 0 22px;letter-spacing:-.015em;font-weight:600}
+  .lede{font-size:20px;color:#3f3a32;max-width:600px;margin:0 0 28px}
+  .lede b{color:var(--ink)}
+  .byline{font-size:14.5px;color:var(--muted)}
+  .byline a{color:var(--teal);text-decoration:none;border-bottom:1px solid rgba(15,118,110,.35)}
+  .byline a:hover{border-bottom-color:var(--teal)}
+
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  .num{font-family:var(--serif);font-size:15px;color:var(--orange);font-weight:700;
+       letter-spacing:.08em;margin:0 0 10px;font-style:italic}
+  h2{font-family:var(--serif);font-size:clamp(25px,3.8vw,34px);margin:0 0 16px;
+     line-height:1.14;font-weight:600;letter-spacing:-.01em}
+  p.body{font-size:17.5px;color:#3a352e;margin:0 0 24px;max-width:620px}
+  p.body i{color:var(--teal);font-style:italic}
+  .callout{display:block;background:#f2efe9;border-left:3px solid var(--teal);
+    padding:13px 18px;border-radius:0 10px 10px 0;font-size:15.5px;margin:0 0 26px;
+    color:#2a251f;max-width:620px}
+  .callout b{color:var(--teal)}
+  .chart-card{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:22px 20px 16px;box-shadow:var(--shadow)}
+  .chart-box{position:relative;height:330px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:660px){.grid2{grid-template-columns:1fr}}
+  .cap{font-size:12.5px;color:var(--muted);margin:14px 4px 0;text-align:center;font-style:italic}
+
+  /* senses showcase */
+  .senses{background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:8px 24px 20px;box-shadow:var(--shadow);margin-bottom:8px}
+  .senses h3{font-family:var(--serif);font-size:22px;margin:20px 0 4px;color:var(--ink)}
+  .senses .word{color:var(--orange)}
+  .senses .sub{font-size:13px;color:var(--muted);margin:0 0 14px}
+  .senses ol{margin:0;padding:0 0 0 4px;list-style:none;
+    column-count:2;column-gap:32px}
+  @media(max-width:560px){.senses ol{column-count:1}}
+  .senses li{font-size:14.5px;color:#3a352e;padding:5px 0;break-inside:avoid;
+    border-bottom:1px dotted var(--line);display:flex;gap:10px}
+  .senses li .n{color:var(--teal);font-weight:700;font-family:var(--serif);min-width:20px}
+
+  footer{padding:48px 0 90px}
+  footer p{font-size:13.5px;color:var(--muted);max-width:660px;line-height:1.65}
+  footer .tag{color:var(--teal);font-weight:700}
+  code{font-size:.9em;background:#f0ede7;padding:1px 5px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="eyebrow">A data story</p>
+    <h1>What 46,000 words reveal about Somali</h1>
+    <p class="lede">I turned the standard Somali dictionary into data. Every headword, every
+      sense, every cross reference: <b>46,314 entries</b> in all. Once you can count them, a
+      language starts to show its habits. Here is what I found.</p>
+    <p class="byline">By Abdullahi Mohamud Ahmed. Built on the dataset behind the
+      <a href="https://www.researchsquare.com/article/rs-10945954/v1" target="_blank" rel="noopener" title="Qaamuuska-NLP paper on Research Square">Qaamuuska-NLP paper</a>.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <p class="num">One</p>
+    <h2>It begins with D</h2>
+    <p class="body">Sort every word by its first letter and one jumps out at once. More than six
+      thousand entries start with D, with M and S trailing well behind. Somali writes only
+      native sounds, so letters like P, V and Z never appear at the front of a word. What is
+      left is a language that leans on a small set of opening consonants.</p>
+    <div class="callout"><b>6,372 words</b> begin with D. That is roughly one entry in seven.</div>
+    <div class="chart-card"><div class="chart-box"><canvas id="c_letters"></canvas></div>
+      <p class="cap">The ten most common first letters.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="num">Two</p>
+    <h2>Most words are about eight letters long</h2>
+    <p class="body">Word length forms a clean hill. The typical headword runs six to nine
+      letters and peaks right around eight. Very short words are rare. Very long ones, the
+      compounds and technical coinages, thin out into a tail that stretches all the way to
+      twenty six letters.</p>
+    <div class="callout">The average word is <b>8.2 letters</b> long, and half are eight or shorter.</div>
+    <div class="chart-card"><div class="chart-box"><canvas id="c_length"></canvas></div>
+      <p class="cap">How many words have each length, in letters.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="num">Three</p>
+    <h2>Nouns and verbs do nearly all the work</h2>
+    <p class="body">Almost every entry is either a noun or a verb. Together they account for
+      99.7 percent of the dictionary. Everything else, the exclamations, pronouns, particles
+      and a lone pair of numerals, would fit on a single page. A dictionary, it turns out, is
+      mostly a warehouse of things and actions.</p>
+    <div class="callout"><b>34,726 nouns</b> and <b>11,445 verbs</b>. Everything else adds up to 143 entries.</div>
+    <div class="chart-card"><div class="chart-box"><canvas id="c_pos"></canvas></div>
+      <p class="cap">Entries by part of speech.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="num">Four</p>
+    <h2>There are more feminine words than masculine ones</h2>
+    <p class="body">Somali nouns carry gender, and the balance tips feminine. Where the
+      dictionary marks it, feminine nouns outnumber masculine ones by several thousand, with a
+      smaller group that works either way. Verbs and function words have no gender to show,
+      which is why a quarter of the book leaves the field blank.</p>
+    <div class="callout"><b>18,410 feminine</b> nouns against <b>13,934 masculine</b>, plus 2,226 that go both ways.</div>
+    <div class="chart-card"><div class="chart-box"><canvas id="c_gender"></canvas></div>
+      <p class="cap">Gender of nouns, where the dictionary records it.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="num">Five</p>
+    <h2>Every verb fits one of four molds</h2>
+    <p class="body">Somali verbs are famously orderly. Each one belongs to a single conjugation
+      class, and the first class is by far the largest. The dictionary also notes whether a
+      verb takes an object, and here Somali leans intransitive: more verbs describe something
+      happening than something being done to a thing.</p>
+    <div class="callout">Class I holds <b>4,170 verbs</b>. Intransitive verbs (6,528) outnumber transitive ones (4,821).</div>
+    <div class="grid2">
+      <div class="chart-card"><div class="chart-box"><canvas id="c_verbclass"></canvas></div>
+        <p class="cap">Verbs by conjugation class.</p></div>
+      <div class="chart-card"><div class="chart-box"><canvas id="c_trans"></canvas></div>
+        <p class="cap">Verbs by transitivity.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="num">Six</p>
+    <h2>One small word, seventeen meanings</h2>
+    <p class="body">Here is my favorite find. Most words mean one thing, and nearly twenty
+      thousand entries have a single sense. But a few carry an entire world. The champion is
+      <i>bax</i>, a three letter verb with seventeen recorded senses. It can mean to leave, to
+      die, to sprout, to rise like the sun, to catch fire, to be sold, and a dozen more,
+      depending on the little particle sitting beside it.</p>
+    <div class="callout"><b>19,735 words</b> have exactly one sense. The verb <i>bax</i> has 17.</div>
+    <div class="senses">
+      <h3>Every sense of <span class="word">bax</span></h3>
+      <p class="sub">As recorded in the dictionary (Somali glosses).</p>
+      <ol id="baxSenses"></ol>
+    </div>
+    <div class="chart-card" style="margin-top:18px"><div class="chart-box"><canvas id="c_poly"></canvas></div>
+      <p class="cap">The eight words with the most senses.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="num">Seven</p>
+    <h2>The same word, spelled several ways</h2>
+    <p class="body">Somali was standardized in writing only in 1972, and the dictionary quietly
+      records the aftermath. Some words appear under a dozen or more spellings, each pointing
+      back to one preferred form. Others are genuine repeats: the same spelling reused for
+      unrelated meanings. The tiny word <i>ah</i> shows up sixteen separate times.</p>
+    <div class="callout"><b>maageernaan</b> has 14 recorded spellings. In all, <b>4,436 headwords</b> appear more than once.</div>
+    <div class="chart-card"><div class="chart-box"><canvas id="c_variants"></canvas></div>
+      <p class="cap">Words with the most spelling variants pointing to them.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="num">Eight</p>
+    <h2>Half the book is a set of signposts</h2>
+    <p class="body">This is the finding that surprised me most. Only about half the entries
+      actually define a word. The rest are redirects, cross references that send you to the
+      real entry elsewhere. So the dictionary is two things at once: a book of meanings, and a
+      map that ties every spelling and variant back to where the meaning lives.</p>
+    <div class="callout"><b>21,032 entries</b> (45 percent) are redirects. Only 25,240 carry a definition.</div>
+    <div class="chart-card"><div class="chart-box"><canvas id="c_redirect"></canvas></div>
+      <p class="cap">Defined entries against cross reference redirects.</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="num">Nine</p>
+    <h2>Where the dictionary gets technical</h2>
+    <p class="body">A small slice of entries wear a subject tag, and reading down the list feels
+      like walking through a university: medicine, physics, mathematics, biology, chemistry,
+      religion, geography, geology, botany and music. Medicine leads by a wide margin, which
+      fits a dictionary built to carry Somali into every field of modern learning.</p>
+    <div class="callout">Only <b>4.2 percent</b> of entries are tagged by field, yet those tags span more than a dozen disciplines.</div>
+    <div class="chart-card"><div class="chart-box"><canvas id="c_domains"></canvas></div>
+      <p class="cap">The most common subject fields. The dictionary abbreviates these in Somali (daaw., fiis., xis. and so on).</p></div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="num">Ten</p>
+    <h2>And what it leaves blank</h2>
+    <p class="body">No entry is required to be complete, and the empty fields tell their own
+      story. Plurals are noted for only one word in ten. Synonyms and verb detail cover about a
+      quarter each. The bones of every entry, its part of speech and page number, are always
+      there, but the richer fields were filled in only where the editors had the material. It
+      is an honest record of a huge manual effort.</p>
+    <div class="callout">Part of speech is recorded for <b>100 percent</b> of entries. Plurals for just <b>10 percent</b>.</div>
+    <div class="chart-card"><div class="chart-box"><canvas id="c_coverage"></canvas></div>
+      <p class="cap">Share of entries that fill in each optional field.</p></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><span class="tag">How this was made.</span> Every figure comes straight from the full
+      46,314 entry dataset (<code>qaamuuska_full_v3.json</code>), computed with a short Python
+      script, not estimated from a sample. Field meanings follow the project's published data
+      schema. This page reports counts and patterns about the lexicon and does not reproduce
+      the dictionary itself. Rights to the source dictionary belong to its authors. Built by
+      Abdullahi Mohamud Ahmed as part of the Qaamuuska-NLP project.</p>
+  </div>
+</footer>
+
+<script>
+const S = {
+  letters:{l:["d","m","s","b","g","c","h","q","f","a"],v:[6372,3795,3440,3160,2996,2814,2722,2529,2161,2125]},
+  length:{l:["2","3","4","5","6","7","8","9","10","11","12","13","14","15","16+"],
+          v:[65,764,1931,4819,7072,6286,6861,5262,4442,3043,2012,1466,937,598,753]},
+  pos:{l:["Noun","Verb","Exclam.","Pronoun","Particle","Prep.","Numeral"],v:[34726,11445,71,54,11,5,2]},
+  gender:{l:["Feminine","Masculine","Both"],v:[18410,13934,2226]},
+  verbclass:{l:["Class I","Class II","Class III","Class IV"],v:[4170,3067,2193,2014]},
+  trans:{l:["Intransitive","Transitive","Bitransitive"],v:[6528,4821,96]},
+  poly:{l:["bax","dhac","aal","had","qaad","goo","aad","aameel"],v:[17,15,12,12,12,11,10,10]},
+  variants:{l:["maageernaan","dhadhansasho","manjabbaxsasho","banaaxiyid","falaxgooddiyid","manjaxaabin","merjin","bardadsanaan"],
+            v:[14,13,12,10,10,10,10,9]},
+  redirect:{l:["Defined entries","Redirects"],v:[25240,21032]},
+  domains:{l:["Medicine","Physics","Mathematics","Biology","Chemistry","Religion","Geography","Geology","Botany","Music"],
+           v:[360,239,226,220,219,171,152,106,104,39]},
+  coverage:{l:["Part of speech","Gender","Definition","Verb class","Synonyms","Plural","Domain"],
+            v:[100,74.6,54.5,24.7,24.6,10,4.2]},
+  bax:["Meel ka tegid.","Dhimasho.","Caloolbixid, shubmid.","Soo dheeraan (dhir, timo iwm).",
+       "Muuqasho (qorrax, dayax iwm).","Shidmid (dab).","Gadmid, iibsamid (ganacsi).",
+       "Ka b.: wax ka noqosho.","Ka b.: arrin ama waajib gudasho.","Ku b.: qaymo ku fadhiisasho.",
+       "La b.: wax meel ku jira baxsasho.","La b.: la cararid (gabar).","Isku b.: isku buuqid, isku kicid.",
+       "Isku b.: jiq noqosho.","Kala b.: kala qaybsamid.","Kala b.: dhanaanaasho, suusacid (caano).",
+       "Haan caano lagu lulay subag dhalid."]
+};
+const C={teal:"#0f766e",orange:"#c2410c",violet:"#7c3aed",gold:"#b45309",slate:"#475569",line:"#e7e1d8"};
+Chart.defaults.font.family=getComputedStyle(document.body).fontFamily;
+Chart.defaults.color="#6b6459";
+Chart.defaults.plugins.legend.display=false;
+const f=n=>n.toLocaleString();
+const ng={grid:{display:false}};
+const gy={grid:{color:C.line},ticks:{callback:v=>f(v)}};
+const bar=(id,d,color,unit)=>new Chart(document.getElementById(id),{type:"bar",
+  data:{labels:d.l,datasets:[{data:d.v,backgroundColor:color,borderRadius:6,maxBarThickness:60}]},
+  options:{maintainAspectRatio:false,scales:{x:ng,y:gy},
+    plugins:{tooltip:{callbacks:{label:c=>f(c.raw)+(unit||"")}}}}});
+const hbar=(id,d,color,unit,pct)=>new Chart(document.getElementById(id),{type:"bar",
+  data:{labels:d.l,datasets:[{data:d.v,backgroundColor:color,borderRadius:5,maxBarThickness:24}]},
+  options:{indexAxis:"y",maintainAspectRatio:false,
+    scales:{x:pct?{grid:{color:C.line},ticks:{callback:v=>v+"%"},max:100}:gy,y:ng},
+    plugins:{tooltip:{callbacks:{label:c=>pct?c.raw+"% of entries":f(c.raw)+(unit||"")}}}}});
+
+bar("c_letters",S.letters,C.teal," words");
+bar("c_length",S.length,C.slate," words");
+bar("c_pos",S.pos,C.teal," entries");
+bar("c_gender",{l:S.gender.l,v:S.gender.v},[C.violet,C.teal,C.gold]," nouns");
+// gender needs per-bar colors:
+bar("c_verbclass",S.verbclass,C.teal," verbs");
+new Chart(c_trans,{type:"bar",data:{labels:S.trans.l,
+  datasets:[{data:S.trans.v,backgroundColor:[C.orange,C.teal,C.gold],borderRadius:6,maxBarThickness:60}]},
+  options:{maintainAspectRatio:false,scales:{x:ng,y:gy},plugins:{tooltip:{callbacks:{label:c=>f(c.raw)+" verbs"}}}}});
+bar("c_poly",S.poly,C.orange," senses");
+hbar("c_variants",S.variants,C.violet," variants");
+new Chart(c_redirect,{type:"doughnut",data:{labels:S.redirect.l,
+  datasets:[{data:S.redirect.v,backgroundColor:[C.teal,C.orange],borderWidth:2,borderColor:"#fff"}]},
+  options:{maintainAspectRatio:false,cutout:"62%",
+    plugins:{legend:{display:true,position:"bottom"},
+      tooltip:{callbacks:{label:c=>c.label+": "+f(c.raw)+" ("+(100*c.raw/46314).toFixed(1)+"%)"}}}}});
+hbar("c_domains",S.domains,C.gold," entries");
+hbar("c_coverage",S.coverage,C.slate,null,true);
+
+// recolor gender bars (per-bar)
+Chart.getChart("c_gender").data.datasets[0].backgroundColor=[C.violet,C.teal,C.gold];
+Chart.getChart("c_gender").update();
+
+// bax senses list
+const ol=document.getElementById("baxSenses");
+S.bax.forEach((g,i)=>{const li=document.createElement("li");
+  li.innerHTML='<span class="n">'+(i+1)+'</span><span>'+g+'</span>';ol.appendChild(li);});
+</script>
+</body>
+</html>

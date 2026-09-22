@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Somali Morphological Analyzer — Qaamuuska-NLP</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Somali Morphological Analyzer</h1>
+  <p class="subtitle">
+    Type a Somali word. A suffix back-off model — trained on the 46k-entry
+    Qaamuuska lexicon and validated in the
+    <a href="https://www.researchsquare.com/article/rs-10945954/v1" target="_blank" rel="noopener">Qaamuuska-NLP paper</a>
+    — guesses its part of speech, and for nouns/verbs, its gender or
+    conjugation class.
+  </p>
+
+  <form id="form">
+    <input type="text" id="word-input" placeholder="e.g. baraf, cunay, qaamuus" autocomplete="off" />
+    <button type="submit">Analyze</button>
+  </form>
+
+  <p id="status">Loading model…</p>
+  <div id="result"></div>
+
+  <footer>
+    Guesses only — this model has never seen most everyday text and is not a
+    substitute for the dictionary itself. Built on aggregate suffix
+    statistics only; no dictionary entries are included in this demo.
+    <br />
+    <a href="https://github.com/abdallammud/somali-morph-analyzer" target="_blank" rel="noopener">Source & pip package</a>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
